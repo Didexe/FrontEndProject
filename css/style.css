@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kreon');
+@import url('https://fonts.googleapis.com/css?family=Kreon:300,400|Droid+Sans');
 body {
     background-image: url('../assets/img/bkgd_body.png');
     background-repeat: repeat;
@@ -31,15 +31,11 @@ header {
 .social-icon {
     width: 14px;
     display: inline-block;
-    fill: red;
 }
 
-.fb {
-    fill: red;
-}
 #search {
-    width: 162px;
-    height: 29px;
+    width: 160px;
+    height: 30px;
     border-bottom: 1px solid #dedede;
     border-left: 1px solid #dedede;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#f7f7f7));
@@ -47,7 +43,7 @@ header {
     background-image: -moz-linear-gradient(top, #eee, #f7f7f7);
     background-image: linear-gradient(to bottom, #eee, #f7f7f7);
     color: #a9a9a9;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, serif;
     padding: 5px;
 }
 
@@ -62,6 +58,132 @@ a {
 nav > ul > li {
     display: inline;
     font-family: 'Kreon', serif;
+    font-weight: 400;
     margin-right: 20px;
     /* color: #4e4e4e; */
+}
+
+#second-navigation {
+    height: 50px;
+    background-image: url('../assets/img/bkgd_nav_01.png');
+}
+
+#second-navigation > nav {
+    max-width: 900px;
+}
+
+ul {
+    margin: 0px;
+}
+
+#slider {
+    height: 390px;
+}
+
+#slider-images {
+    height: 330px;
+    background-image: url('../assets/img/slider_image_1.jpg');
+    border-bottom: 1px solid #a9a9a9;
+}
+
+#slider-controls-bottom {
+    height: 60px;
+    /* border-bottom: 1px solid #a9a9a9; */
+}
+
+.control-bottom {
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background: #dfdfdf;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.control-bottom.active{
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background: #1e1e1e;
+    border: 3px solid #dfdfdf;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.divider {
+    height: 1px;
+    max-width: 890px;
+    background: #f0f0f0;
+    margin: auto;
+}
+
+#quote {
+    height: 130px;
+    text-align: center;
+}
+
+#quote h1 {
+    font-size: 1.5em;
+    font-family: 'Kreon', serif;
+    font-weight: 400;
+    color: #1d1d1d;
+}
+#quote p {
+    font-family: 'Kreon';
+    font-weight: 300;
+    color: #929292;
+}
+main {
+    border-bottom: 1px solid #ececec;
+}
+.article-exerpt {
+    
+}
+
+.article-exerpt img {
+    width: 240px;
+    height: 126px;
+    border: 3px solid white;
+    /* border-left: 1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
+    border-right: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4; */
+}
+
+.article-exerpt p {
+    font-size: .9em;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.heading {
+    font-family: 'Kreon', serif;
+    font-weight: 300;
+}
+
+.links a {
+    font-family: 'Droid Sans', sans-serif;
+}
+
+#media-wrapper {
+    background: white;
+    border-radius: 10px;
+    border-left: 1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
+    border-right: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+}
+.media-item {
+    
+}
+.media-item img {
+    border: 3px solid white;
+}
+
+footer {
+    border: 1px solid white;
+    background: #f9f9f9;
+}
+
+footer p {
+    font-size: .9em;
+    font-family: 'Droid Sans', sans-serif;
 }
