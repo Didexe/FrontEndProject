@@ -1,0 +1,32 @@
+{
+    "blogDB": {
+        "user": {
+            "userId": "string",
+            "userName": "username",
+            "userImage": "url",
+            "email": "email",
+            "password": "password"
+        },
+        "post": {
+            "postId": "string",
+            "postname": "postname",
+            "postDate": "date",
+            "postImage": "url",
+            "posttext": "text",
+            "postcomments": ["commentId", "commentId"]
+        },
+        "comment": {
+            "commentId": "string",
+            "postId": "string",
+            "userId": "string",
+            "commentDate": "date",
+            "commentText": "text",
+            "replies": ["commentId", "commentId"]
+        },
+        "slide": {
+            "slideImage": "url",
+            "slideTitle": "text",
+            "slideText": "text"
+        }
+    }
+}
