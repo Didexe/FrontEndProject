@@ -57,40 +57,45 @@
             <div class="divider"></div>
             <div id="content-wrapper">
                 <main id="post-wrapper">
+                    <div class="divider"></div>
+                    <p class="post-details">Posted by<span> Admin</span> on <span>March 13, 2011 </span>in <span>Some</span> category | <span>30 </span>comments</p>
+                    <div class="divider"></div>
                     <section id="post">
-                        <div class="divider"></div>
-                        <p class="post-details">Posted by<span class="posted-by">Admin</span> on <span class="post-date">March 13, 2011 </span>in <span class="category-name">Some</span> category | <span class="number-comments">30 </span>comments</p>
-                        <div class="divider"></div>
                         <div class="post-image-wrapper">
                             <img class="post-image" src="http://fakeimg.pl/184x184?font=lobster" alt=""/>
-                            <div id="post-image-shadow"></div>
+                            <div class="post-image-shadow"></div>
                         </div>
-                        <p class="post-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
+                        <p id="post-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
                     </section>
                     <section class="post-comments">
+                        <h2 class="heading"><span>30 </span> Comments</h2>
                         <article class="comment">
                             <div class="user-image-wrapper">
-                                <img src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
+                                <img class="user-image" src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
+                                <div class="user-image-shadow"></div>
                             </div>
-                            <h2 class="comment-user">Nick Roach</h2>
+                            <h2 class="heading username">Nick Roach</h2>
+                            <p class="post-date">March 13, 2010</p>
                             <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
-                            <button>Read more</button>
+                            <button type="button">Read more</button>
                         </article>
                         <article class="sub-comment">
                             <div class="user-image-wrapper">
-                                <img src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
+                                <img class="user-image" src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
+                                <div class="user-image-shadow"></div>
                             </div>
-                            <h2 class="comment-user">Nick Roach</h2>
+                            <h2 class="heading username">Nick Roach</h2>
+                            <p class="post-date">March 13, 2010</p>
                             <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
-                            <button>Read more</button>
+                            <button type="button">Read more</button>
                         </article>
                     </section>
-                    <section class="reply-form">
-                        <h2>Leave a Reply</h2>
+                    <section id="reply-form">
+                        <h2 class="heading">Leave a Reply</h2>
                         <input type="text" placeholder="Name">
                         <input type="email" placeholder="Email">
-                        <input type="textarea" placeholder="Message">
-                        <button>Post comment</button>
+                        <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                        <button type="button">Post comment</button>
                     </section>
                 </main>
                 <aside id="right-sidebar">
