@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/admin-style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="add-user">
+        <h2>Register user</h2>
+        <input type="text" name="username" id="input-username" placeholder="Username" required>
+        <input type="email" name="email" id="input-email" placeholder="Email" required>
+        <input type="password" name="password" id="input-password" placeholder="Password" required>
+        <input type="file" name="upload_user_image" id="user-image" required>
+        <button id="user-button" type="submit" onclick="addNewUser()">Register</button>
+    </section>
+    <section id="login-user">
+        <h2>Login user</h2>
+        <input type="email" name="email" id="login-email" placeholder="Email" required>
+        <input type="password" name="password" id="login-password" placeholder="Password" required>
+        <button id="login-button" type="submit" onclick="loginUser()">Login</button>
+    </section>
+    <section id="add-slide">
+            <h2>Add new slide</h2>
+            <input type="text" id="slide-title" placeholder="Slide Title" required>
+            <textarea name="slide_text" id="slide-text" cols="30" rows="10"  placeholder="Slide Text" required></textarea>
+            <input type="file" name="upload_slide_image" id="slide-image" required>
+            <button id="slide-button" type="submit" onclick="addNewSlide()">Add slide</button>
+        </section>
+    <section id="add-post">
+        <h2>Add new Post</h2>
+        <input type="text" name="posname" id="post-title" placeholder="Post title" required>
+        <textarea name="posttext" id="post-text" cols="30" rows="10" placeholder="Post text" required></textarea>
+        <input type="file" name="upload_post_image" id="post-image" required>
+        <button id="post-button" type="submit" onclick="addNewPost()">Add post</button>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="../app.js"></script>
+    <script src="../js/scripts.js"></script>
+</body>
+</html>

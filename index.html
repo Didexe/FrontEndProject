@@ -4,23 +4,23 @@
         <title>Home Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../css/style.css" rel="stylesheet">
+        <link href="./css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     </head>
     <body>
         <div class="wrapper">
             <header>
                 <div id="social">
-                    <div class="social-icon"><a href=""><img src="../assets/img/twitter_icon.svg" alt="twitter icon"></a></div>
-                    <div class="social-icon"><a href=""><img src="../assets/img/rss_icon.svg" alt="rss icon"></a></div>
-                    <div class="social-icon"><a href=""><img src="../assets/img/facebook_icon.svg" alt="facebook icon"></a></div>
+                    <div class="social-icon"><a href=""><img src="./assets/img/twitter_icon.svg" alt="twitter icon"></a></div>
+                    <div class="social-icon"><a href=""><img src="./assets/img/rss_icon.svg" alt="rss icon"></a></div>
+                    <div class="social-icon"><a href=""><img src="./assets/img/facebook_icon.svg" alt="facebook icon"></a></div>
                 </div>
                 <div id="search-wrapper">
                     <input type="search" id="search" placeholder="Search this website ...">
-                    <img src="../assets/img/magnifying-glass.svg" alt="magnifying glass icon">
+                    <img src="./assets/img/magnifying-glass.svg" alt="magnifying glass icon">
                 </div>
                 <div id="logo">
-                    <img src="../assets/img/logo.png" alt="logo">
+                    <img src="./assets/img/logo.png" alt="logo">
                 </div>
                 <nav>
                     <ul>
@@ -68,7 +68,7 @@
                         <p class="exerpt">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
                         <a href="#">Read more</a>                        
                     </div>
-                    <img class="slider-image" src="../assets/img/slider_image_1.jpg" alt="slider image">
+                    <img class="slider-image" src="./assets/img/slider_image_1.jpg" alt="slider image">
                     <!-- <img class="slider-image" src="../assets/img/slider_image_2.jpg" alt="slider image">
                     <img class="slider-image" src="../assets/img/slider_image_3.jpg" alt="slider image">
                     <img class="slider-image" src="../assets/img/slider_image_4.jpg" alt="slider image"> -->
@@ -201,6 +201,22 @@
                     </article>
                 </footer>
         </div>
-        <script src="../js/scripts.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+        <script>
+                // Initialize Firebase
+                var config = {
+                  apiKey: "AIzaSyCXp1GKlfoTF4eY49tx2inZSOrE3peimNQ",
+                  authDomain: "photo-blog-85739.firebaseapp.com",
+                  databaseURL: "https://photo-blog-85739.firebaseio.com",
+                  projectId: "photo-blog-85739",
+                  storageBucket: "photo-blog-85739.appspot.com",
+                  messagingSenderId: "735786168913"
+                };
+                firebase.initializeApp(config);
+              </script>
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+        <!-- <script src="./app.js"></script> -->
+        <script src="./js/scripts.js"></script>
     </body>
 </html>

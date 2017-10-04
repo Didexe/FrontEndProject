@@ -9,11 +9,11 @@
         },
         "post": {
             "postId": "string",
-            "postname": "postname",
+            "postTitle": "string",
             "postDate": "date",
             "postImage": "url",
-            "posttext": "text",
-            "postcomments": ["commentId", "commentId"]
+            "postText": "text",
+            "postComments": ["commentId", "commentId"]
         },
         "comment": {
             "commentId": "string",

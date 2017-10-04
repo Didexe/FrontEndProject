@@ -1,6 +1,7 @@
 class Post {
-    constructor(postName, postImageUrl, postText) {
-        // this.postId = idGenerator.generate();
+    constructor(postName, postImageUrl, postText, userId) {
+        this.postId = idGenerator.generate();
+        this.postUserId = userId;
         this.postName = postName;
         this.postImage = postImageUrl;
         this.postText = postText;

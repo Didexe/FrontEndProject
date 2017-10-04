@@ -85,17 +85,17 @@
                                 <div class="user-image-shadow"></div>
                             </div>
                             <h2 class="heading username">Nick Roach</h2>
-                            <p class="post-date">March 13, 2010</p>
+                            <p class="comment-date">March 13, 2010</p>
                             <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
-                            <button type="button">Read more</button>
+                            <button type="button" >Read more</button>
                         </article>
                     </section>
                     <section id="reply-form">
                         <h2 class="heading">Leave a Reply</h2>
-                        <input type="text" placeholder="Name">
-                        <input type="email" placeholder="Email">
-                        <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                        <button type="button">Post comment</button>
+                        <input id="comment-name" type="text" placeholder="Name">
+                        <input id="comment-email" type="email" placeholder="Email">
+                        <textarea id="comment-text" name="message" cols="30" rows="10" placeholder="Message"></textarea>
+                        <button id="comment-button" type="button" onclick="addNewComment()">Post comment</button>
                     </section>
                 </main>
                 <aside id="right-sidebar">
