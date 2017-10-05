@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/admin-style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="add-slide">
+        <h2>Add new slide</h2>
+        <input type="text" id="slide-title" placeholder="Slide Title" required>
+        <textarea name="slide_text" id="slide-text" cols="30" rows="10"  placeholder="Slide Text" required></textarea>
+        <input type="file" name="upload_slide_image" id="slide-image" required>
+        <button id="slide-button" type="submit" onclick="addNewSlide()">Add slide</button>
+    </section>
+    <section id="add-category">
+        <h2>Add new Category</h2>
+        <input type="text" name="categoryname" id="category-name" placeholder="Category name" required>
+        <button id="category-button" type="submit" onclick="addNewCategory()">Add category</button>
+    </section>
+    <section id="add-post">
+            <h2>Add new Post</h2>
+            <input type="text" name="posname" id="post-title" placeholder="Post title" required>
+            <textarea name="posttext" id="post-text" cols="30" rows="10" placeholder="Post text" required></textarea>
+            <input type="text" name="postcategory" id="post-category" placeholder="Post category" required>            
+            <input type="file" name="upload_post_image" id="post-image" required>
+            <button id="post-button" type="submit" onclick="addNewPost()">Add post</button>
+        </section>
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="../app.js"></script>
+    <script src="../js/scripts.js"></script>
+</body>
+</html>
