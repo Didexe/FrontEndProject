@@ -15,7 +15,7 @@ function loadHTML(url, id) {
 }
 
 // use #! to hash
-router = new Navigo(null, false);
+router = new Navigo(null, true, '#!');
 router.on({
   // 'view' is the id of the div element inside which we render the HTML
   'firstroute': () => { loadHTML('./templates/first.html', 'view') },

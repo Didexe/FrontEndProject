@@ -19,8 +19,8 @@
         console.log('Login form app');
         showLoginPage();
       },
-      'signup': () => showSignupPage(),
-      'logout': () => showLoginPage(),
+      'signup': () => {showSignupPage()},
+      'logout': () => logoutUser(),
       'home': () => showHomePage(),
       ':category': (params) => showCategoryPage(params),
       ':category/:post': (params) => showPostPage(params),

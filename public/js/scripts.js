@@ -3,14 +3,60 @@
 // const Slide = require('../models/slide.model');
 const db = firebase.database();
 const storage = firebase.storage().ref();
+// const user = 
 const SLIDERIMAGES = []
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-function getSliderImages() {
+function getSlides() {
 
+}
+
+function getArticles() {
+
+}
+
+function getMultimedia() {
+    
 }
 function changeSliderImages() {
 
+}
+
+function slideMultimediaImages() {
+    
+}
+
+function getCategoryNames() {
+    const names = [];
+    return db.ref().child('categories').once('value', (snapshot) => {
+        snapshot.forEach((category) => {
+           names.push(category.val().categoryName);
+        })
+    }).then(() => {
+        return Promise.resolve({categories:names});
+    }) 
+}
+
+function getCategoryPosts(categoryName) {
+    const posts = [];
+    return db.ref('categories/').child(categoryName).child('categoryPosts').once('value', (snapshot) => {
+        snapshot.forEach((post) => {
+           posts.push(category.val());
+        })
+    }).then(() => {
+        return Promise.resolve({posts:posts});
+    }) 
+}
+
+function getSlides() {
+    const slides = [];
+    return db.ref().child('slides').once('value', (snapshot) => {
+        snapshot.forEach((slide) => {
+           posts.push(category.val());
+        })
+    }).then(() => {
+        return Promise.resolve({slides:slides});
+    }) 
 }
 
 function addNewUser() {
@@ -61,16 +107,16 @@ function addNewCategory() {
             if(snapshot.exists()) {
                 alert('Category already exists!');
             } else {
-                db.ref().child(`categories/${categoryName}`).set();
+                db.ref(`categories/`).child(categoryName).set({categoryName});
             }
         })
 }
 
 function addNewPost() {
-    console.log('Add new Post')
     const postImage = document.getElementById('post-image').files[0];
     const postTitle = document.getElementById('post-title').value;
     const postText = document.getElementById('post-text').value;
+    const postCategory = document.getElementById('post-category').value;
     const userId = firebase.auth().currentUser.uid;
     const today = new Date();
     const postDate = MONTHS[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
@@ -86,7 +132,8 @@ function addNewPost() {
         () => {
         storage.child(`postimages/${postTitle}/${postImage.name}`).getDownloadURL()
             .then((imageUrl) => {
-                db.ref().child(`posts/`).push({
+                db.ref().child(`categories/${postCategory}/categoryPosts`).push({
+                    postCategory,
                     postTitle,
                     postText,
                     postDate,
@@ -138,6 +185,23 @@ function addNewComment() {
     })
 }
 
+function showHomePage() {
+    Promise.all([
+        getSlides(),
+        getArticles(),
+        getMultimedia(),
+        loadTemplate('admin')
+        ])
+        .then(([slides, articles, multimedia, template]) => {
+            const data = {
+                slides: slides,
+                articles: articles,
+                multimedia: multimedia
+            }
+            document.getElementById('container').innerHTML = template(categories);
+        })
+}
+
 function showLoginPage() {
     console.log('1')
     fetch('../templates/login.html')
@@ -149,10 +213,43 @@ function showLoginPage() {
         })
 }
 
-function showCategoryPage() {
+function showSignupPage() {
+    console.log('1')
+    fetch('../templates/signup.html')
+        .then((response) => {
+            response.text()
+                .then((html) => {
+                    document.getElementById('container').innerHTML = html;
+                })
+        })
+}
 
+function showAdminPage() {
+    Promise.all([
+        getCategoryNames(),
+        loadTemplate('admin')
+        ])
+        .then(([categories, template]) => {
+            document.getElementById('container').innerHTML = template(categories);
+        })
+}
+
+function showCategoryPage() {
+    Promise.all([
+        getCategoryPosts(),
+        loadTemplate('category')
+        ])
+        .then(([categories, template]) => {
+            document.getElementById('container').innerHTML = template(categories);
+        })
 }
 
 function showPostPage() {
-    
+    Promise.all([
+        getPost(),
+        loadTemplate('post')
+        ])
+        .then(([categories, template]) => {
+            document.getElementById('container').innerHTML = template(categories);
+        })
 }

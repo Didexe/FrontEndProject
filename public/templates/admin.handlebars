@@ -1,0 +1,29 @@
+<section id="add-slide">
+    <h2>Add new slide</h2>
+    <input type="text" id="slide-title" placeholder="Slide Title" required>
+    <textarea name="slide_text" id="slide-text" cols="30" rows="10"  placeholder="Slide Text" required></textarea>
+    <input type="file" name="upload_slide_image" id="slide-image" required>
+    <button id="slide-button" type="submit" onclick="addNewSlide()">Add slide</button>
+</section>
+<section id="add-category">
+    <h2>Add new Category</h2>
+    <input type="text" name="categoryname" id="category-name" placeholder="Category name" required>
+    <button id="category-button" type="submit" onclick="addNewCategory()">Add category</button>
+</section>
+<section id="add-post">
+    <h2>Add new Post</h2>
+    <select type="text" name="postcategory" id="post-category" placeholder="Post category" required>
+    {{#if categories}}
+    <option selected disabled>select category</option>
+    {{#each categories}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+    {{else}}
+    <option selected disabled>add category first</option>
+    {{/if}}
+    </select>
+    <input type="text" name="posname" id="post-title" placeholder="Post title" required>
+    <textarea name="posttext" id="post-text" cols="30" rows="10" placeholder="Post text" required></textarea>     
+    <input type="file" name="upload_post_image" id="post-image" required>
+    <button id="post-button" type="submit" onclick="addNewPost()">Add post</button>
+</section>

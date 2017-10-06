@@ -27,7 +27,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><a href="">Categories</a></li>
+                        <li><a href="javascript:void(0)">Categories</a></li>
                         <li><a href="#login">Login</a></li>
                         <li><a href="#signup">Signup</a></li>
                         <li><a href="#logout">Logout</a></li>
@@ -41,7 +41,7 @@
                             <li><a href="#home">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
-                            <li><a href="#categories">Categories</a></li>
+                            <li><a href="javascript:void(0)">Categories</a></li>
                             <li><a href="#login">Login</a></li>
                             <li><a href="#signup">Signup</a></li>
                             <li><a href="#logout">Logout</a></li>
@@ -54,17 +54,18 @@
                 <div class="navigation-shadow"></div>
                 <nav>
                     <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#">ABOUT</a></li>
-                        <li><a href="#">CONTACT</a></li>
-                        <li><a href="#">CATEGORIES</a></li>
-                        <li><a href="#">LOGIN</a></li>
-                        <li><a href="#">SIGNUP</a></li>
-                        <li><a href="#">ADMIN</a></li>
-                        <li><a href="#">LOGOUT</a></li>
+                        <li><a href="#home">HOME</a></li>
+                        <li><a href="#about">ABOUT</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
+                        <li><a href="javascript:void(0)">CATEGORIES</a></li>
+                        <li><a href="#login">LOGIN</a></li>
+                        <li><a href="#signup">SIGNUP</a></li>
+                        <li><a href="#logout">ADMIN</a></li>
+                        <li><a href="#admin">LOGOUT</a></li>
                     </ul>
                 </nav>
             </div>
+            <div id="container">
             <div id="slider">
                 <div class="shadow-top"></div>
                 <div id="slider-controls-left"><i class="fa fa-angle-left fa-2x" aria-hidden="true"></i></div>
@@ -88,7 +89,6 @@
                     <div class="control-bottom"></div>
                 </div>
             </div>
-            <div id="container">
                 <div class="divider"></div>
                 <div id="quote">
                     <h1>"Chameleon is an extremely versatile theme with a miriad of options and styles"</h1>
@@ -210,21 +210,9 @@
             </footer>
         </div>
         <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-        <!-- <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyCXp1GKlfoTF4eY49tx2inZSOrE3peimNQ",
-                authDomain: "photo-blog-85739.firebaseapp.com",
-                databaseURL: "https://photo-blog-85739.firebaseio.com",
-                projectId: "photo-blog-85739",
-                storageBucket: "photo-blog-85739.appspot.com",
-                messagingSenderId: "735786168913"
-            };
-            firebase.initializeApp(config);
-        </script> -->
-        <script src="./lib/jquery.min.js"></script>
         <script src="./lib/handlebars/dist/handlebars.min.js"></script>
         <script src="./lib/navigo/lib/navigo.min.js"></script>
+        <script src="./js/templates.js"></script>
         <script src="./js/app.js"></script>
         <script src="./js/scripts.js"></script>
     </body>
