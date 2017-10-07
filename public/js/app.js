@@ -15,13 +15,13 @@
   
     router.on({
       'admin': () => showAdminPage(),
-      'login': () => {
-        console.log('Login form app');
-        showLoginPage();
-      },
-      'signup': () => {showSignupPage()},
+      'login': () => showLoginPage(),
+      'signup': () => showSignupPage(),
       'logout': () => logoutUser(),
-      'home': () => showHomePage(),
+      'home': () => {
+        showHomePage();
+        console.log('Loading Home page from App')
+      },
       ':category': (params) => showCategoryPage(params),
       ':category/:post': (params) => showPostPage(params),
     })

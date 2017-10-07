@@ -103,6 +103,20 @@ header>nav {
     display: none;
 }
 
+.sub-menu-container {
+    position: relative;
+
+}
+.sub-menu-container:hover .sub-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: -4px;
+}
+
+.sub-menu {
+    display: none;
+}
 #dropdown-menu {
     display: block;
     grid-column: 3 / 7;
@@ -164,6 +178,7 @@ header>nav {
     top: 0px;
     display: none;
 }
+
 #second-navigation {
     height: 50px;
     background-image: url('../assets/img/bkgd_nav_01.png');
@@ -230,16 +245,13 @@ i {
     box-shadow: inset 0px 0px 5px  black; */
 }
 
-#slider img{
+.slider-image{
     width: 100%;
     height: auto;
     display: block;
     /* z-index: -1; */
 }
 
-#slider-text-field {
-    display: none;
-}
 #slider-controls-right {
     height: 36px;
     width: 36px;
@@ -354,7 +366,7 @@ i {
         grid-gap: 4%;
         grid-template-columns: 1fr 1fr;
     }
-    #slider-text-field {
+    .slider-text-field {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -365,7 +377,7 @@ i {
         height: 60%;
         background-color: rgba(0, 0, 0, 0.6);
     }
-    #slider-text-field h2 {
+    .slider-text-field h2 {
         margin: 20px 20px 0px 30px;
         max-width: 90%;
         color: white;
@@ -373,7 +385,7 @@ i {
         font-weight: 300;
     }
     
-    #slider-text-field p {
+    .slider-text-field p {
         margin: 10px 30px 10px 30px;
         color: #9d9c9c;
         font-family: 'Droid Sans';
@@ -384,7 +396,7 @@ i {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    #slider-text-field a {
+    .slider-text-field a {
         color: #7b9297;
         background: black;
         font-family: 'Kreon';
@@ -875,6 +887,10 @@ input {
 }
 
 /* Login page styles */
-#login-user, #register-user, #add-slide, #add-category, #add-post  {
+#login-user, #register-user, #add-slide, #add-category, #add-post, #add-multimedia  {
     margin-left: 100px;
+}
+
+.hidden {
+    display: none;
 }

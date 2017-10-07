@@ -1,28 +1,36 @@
-[debug] [2017-10-06T10:54:10.700Z] ----------------------------------------------------------------------
-[debug] [2017-10-06T10:54:10.703Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve -p 8080
-[debug] [2017-10-06T10:54:10.703Z] CLI Version:   3.13.1
-[debug] [2017-10-06T10:54:10.703Z] Platform:      darwin
-[debug] [2017-10-06T10:54:10.703Z] Node Version:  v7.4.0
-[debug] [2017-10-06T10:54:10.703Z] Time:          Fri Oct 06 2017 13:54:10 GMT+0300 (EEST)
-[debug] [2017-10-06T10:54:10.704Z] ----------------------------------------------------------------------
+[debug] [2017-10-07T07:50:21.726Z] ----------------------------------------------------------------------
+[debug] [2017-10-07T07:50:21.728Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve -p 8080
+[debug] [2017-10-07T07:50:21.728Z] CLI Version:   3.13.1
+[debug] [2017-10-07T07:50:21.728Z] Platform:      darwin
+[debug] [2017-10-07T07:50:21.728Z] Node Version:  v7.4.0
+[debug] [2017-10-07T07:50:21.729Z] Time:          Sat Oct 07 2017 10:50:21 GMT+0300 (EEST)
+[debug] [2017-10-07T07:50:21.729Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-10-06T10:54:10.717Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-10-06T10:54:10.717Z] > authorizing via signed-in user
-[debug] [2017-10-06T10:54:10.720Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/photo-blog-85739  
- Fri Oct 06 2017 13:54:10 GMT+0300 (EEST)
-[debug] [2017-10-06T10:54:14.713Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-06T10:54:14.714Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/photo-blog-85739/tokens  
- Fri Oct 06 2017 13:54:14 GMT+0300 (EEST)
-[debug] [2017-10-06T10:54:15.386Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T07:50:21.742Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-07T07:50:21.742Z] > authorizing via signed-in user
+[debug] [2017-10-07T07:50:21.743Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-07T07:50:21.744Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/dSy6wJMC7_K05B2nGF8cXRBfuEZ8hoqEHH8NdJ1DjY8',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Oct 07 2017 10:50:21 GMT+0300 (EEST)
+[debug] [2017-10-07T07:50:21.951Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T07:50:21.954Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/photo-blog-85739  
+ Sat Oct 07 2017 10:50:21 GMT+0300 (EEST)
+[debug] [2017-10-07T07:50:23.608Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T07:50:23.609Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/photo-blog-85739/tokens  
+ Sat Oct 07 2017 10:50:23 GMT+0300 (EEST)
+[debug] [2017-10-07T07:50:24.517Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/SuccessProjects/Documents/TelerikTraining/FrontEndDevelopment'...
 [info] 
-[debug] [2017-10-06T10:54:15.389Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/photo-blog-85739  
- Fri Oct 06 2017 13:54:15 GMT+0300 (EEST)
-[debug] [2017-10-06T10:54:16.452Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-06T10:54:16.452Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/735786168913/clients/_:getWebAppConfig  
- Fri Oct 06 2017 13:54:16 GMT+0300 (EEST)
-[debug] [2017-10-06T10:54:16.951Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T07:50:24.521Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/photo-blog-85739  
+ Sat Oct 07 2017 10:50:24 GMT+0300 (EEST)
+[debug] [2017-10-07T07:50:25.440Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T07:50:25.441Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/735786168913/clients/_:getWebAppConfig  
+ Sat Oct 07 2017 10:50:25 GMT+0300 (EEST)
+[debug] [2017-10-07T07:50:25.951Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:8080
 
