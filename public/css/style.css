@@ -112,6 +112,22 @@ header>nav {
     position: absolute;
     top: 100%;
     left: -4px;
+    z-index: 20;
+}
+
+.sub-menu a {
+    background-color: white;
+    color: #929292;
+    width: 100px;
+    padding: 6px;
+    display: inline-block;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.sub-menu a:hover {
+    background: whitesmoke;
 }
 
 .sub-menu {

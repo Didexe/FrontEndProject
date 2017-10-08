@@ -22,7 +22,7 @@
         showHomePage();
         console.log('Loading Home page from App')
       },
-      ':category': (params) => showCategoryPage(params),
-      ':category/:post': (params) => showPostPage(params),
+      'categories/:category': (params) => showCategoryPage(params),
+      'categories/:category/:post': (params) => showPostPage(params),
     })
     .resolve();

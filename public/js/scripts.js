@@ -4,7 +4,7 @@
 const db = firebase.database();
 const storage = firebase.storage().ref();
 // const user = 
-// const SLIDERIMAGES = []
+const posts = []
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 Handlebars.registerHelper('isSmallerThan7', function(index, options) {
@@ -13,9 +13,30 @@ Handlebars.registerHelper('isSmallerThan7', function(index, options) {
     }
     return options.inverse(this);
  })
-function changeSliderImages() {
-    
+function slideDirection(direction) {
+    const numberOfImages = document.getElementsByClassName('slider-image').length;
+    const currentIndex = document.getElementsByClassName('slider-image visible')[0].id.split('-')[2];
+    let index = parseInt(currentIndex) + parseInt(direction);
+    console.log(currentIndex);
+    console.log(index);
+    console.log(numberOfImages);
+    if(index > numberOfImages - 1) {
+        index = 0;
+    } if(index < 0) {
+        index = numberOfImages - 1;
     }
+    console.log(index);
+    slideSliderImages(index);
+    }
+
+function slideSliderImages(index) {
+    document.getElementsByClassName('slider-image visible')[0].className = 'slider-image hidden'
+    document.getElementById('slider-image-' + index).className = 'slider-image visible'
+    document.getElementsByClassName('slider-text-field visible')[0].className = 'slider-text-field hidden'
+    document.getElementById('slider-text-field-' + index).className = 'slider-text-field visible'
+    document.getElementsByClassName('control-bottom active')[0].classList.remove('active');
+    document.getElementById('control-bottom-' + index).classList.add('active');
+}
     
 function slideMultimediaImages() {
 
@@ -74,19 +95,37 @@ function getCategoryNames() {
     }) 
 }
 
+// function getCategoryPosts(categoryName) {
+//     return db.ref('categories/').child(categoryName).child('categoryPosts').once('value', (snapshot) => {
+//         snapshot.forEach((post) => {
+//            posts.push(post.val());
+//         })
+//     }).then(() => {
+//         return Promise.resolve(posts);
+//     }) 
+// }
+
 function getCategoryPosts(categoryName) {
-    const posts = [];
-    return db.ref('categories/').child(categoryName).child('categoryPosts').once('value', (snapshot) => {
-        snapshot.forEach((post) => {
-           posts.push(category.val());
-        })
-    }).then(() => {
-        return Promise.resolve({posts:posts});
-    }) 
+    return db.ref('categories/').child(categoryName).once('value')
+        .then((snapshot) => {
+            const categoryDescription = (snapshot.val() && snapshot.val().categoryDescription);
+            const categoryPosts = snapshot.val() && snapshot.val().categoryPosts;
+            Object.keys(categoryPosts).forEach((id) => {
+                posts.push(categoryPosts[id]);
+                });
+            return Promise.resolve(categoryDescription)
+    })
 }
 
-function getPost(id) {
-    
+function getPost(postId) {
+    return db.ref('posts').child(postId).once('value')
+        .then((snapshot) => {
+            const post = snapshot.val()
+            // const comments = post.postComments;
+            // const postComments = [];
+            // Object.keys(comments).forEach((id) => )
+            return Promise.resolve(post);
+        })
 }
 
 function addNewUser() {
@@ -163,6 +202,7 @@ function addNewPost() {
     const postText = document.getElementById('input-post-text').value;
     const postCategory = document.getElementById('input-post-category').value;
     const userId = firebase.auth().currentUser.uid;
+    const userName = firebase.auth().currentUser.displayName;
     const today = new Date();
     const postDate = MONTHS[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
     
@@ -172,19 +212,22 @@ function addNewPost() {
         (snapshot) => {
         },
         (error) => {
-          console.log(error);
+          alert(error);
         },
         () => {
         storage.child(`postimages/${postTitle}/${postImage.name}`).getDownloadURL()
             .then((imageUrl) => {
                 const newPostKey = firebase.database().ref().child('posts').push().key;
                 const postData = {
+                    postId: newPostKey,
                     postCategory,
                     postTitle,
                     postText,
                     postDate,
                     imageUrl,
-                    userId
+                    userId,
+                    userName,
+                    numberOfComments: 0
                 }
                 const updates = {};
                 updates[`posts/${newPostKey}`] = postData;
@@ -210,7 +253,7 @@ function addNewSlide() {
         (snapshot) => {
         },
         (error) => {
-          console.log(error);
+          alert(error);
         },
         () => {
         storage.child(`slideimages/${slideImage.name}`).getDownloadURL()
@@ -228,21 +271,42 @@ function addNewSlide() {
     }) 
 }
 
-function addNewComment() {
-    const commentName = document.getElementById('input-comment-name').value;
-    const commentEmail = document.getElementById('input-comment-email').value;
+function addNewComment(partialUrl) {
+    const commentAuthor = document.getElementById('input-comment-user').value;
+    const commentAuthorEmail = document.getElementById('input-comment-email').value;
     const commentText = document.getElementById('input-comment-text').value;
     const today = new Date();
+    const commentAuthorImage = firebase.auth().currentUser.photoURL
     const commentDate = MONTHS[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
-    db.ref().child(`comments/`).push({
+    const uris = partialUrl.split('/')
+    const categoryName = uris[0];
+    const postId = uris[1];
+    let postNumbers;
+    const newCommentKey = firebase.database().ref().child('comments').push().key;
+    const commentData = {
         commentText,
         commentDate,
-        commentEmail,
-        commentName
-    }).then(() => {
-        showPostPage();
-        alert('Add new Comment')
-    })
+        commentAuthorEmail,
+        commentAuthor,
+        commentAuthorImage
+    }
+    const updates = {};
+
+    db.ref(`categories/${categoryName}/categoryPosts/${postId}`)
+        .once('value')
+        .then((snapshot) => {
+            console.log(snapshot.val());
+            postNumbers = snapshot.val().numberOfComments + 1;
+            updates[`posts/${postId}/postComments/${newCommentKey}`] = commentData;
+            updates[`comments/${newCommentKey}`] = commentData;
+            updates[`posts/${postId}/numberOfComments`] = postNumbers;
+            updates[`categories/${categoryName}/categoryPosts/${postId}/numberOfComments`] = postNumbers;
+            firebase.database().ref().update(updates)
+        })
+        .then(() => {
+            // showPostPage(postId);
+            alert('New comment added')
+        });
 }
 
 function addNewArticle() {
@@ -256,7 +320,7 @@ function addNewArticle() {
         (snapshot) => {
         },
         (error) => {
-          console.log(error);
+          alert(error);
         },
         () => {
         storage.child(`articleimages/${articleImage.name}`).getDownloadURL()
@@ -284,7 +348,7 @@ function addNewMultimedia() {
         (snapshot) => {
         },
         (error) => {
-          console.log(error);
+          alert(error);
         },
         () => {
         storage.child(`multimediaimages/${multimediaImage.name}`).getDownloadURL()            
@@ -302,7 +366,6 @@ function addNewMultimedia() {
 }
 
 function showHomePage() {
-    console.log('Loading Home page')
     Promise.all([
         getSlides(),
         getArticles(),
@@ -315,7 +378,6 @@ function showHomePage() {
                 articles: articles,
                 multimedia: multimedia
             }
-            console.log(data);
             document.getElementById('container').innerHTML = template(data);
         })
 }
@@ -350,22 +412,30 @@ function showAdminPage() {
         })
 }
 
-function showCategoryPage() {
+function showCategoryPage(params) {
+    const categoryName = params.category;
     Promise.all([
-        getCategoryPosts(),
+        getCategoryPosts(categoryName),
         loadTemplate('category')
         ])
-        .then(([categories, template]) => {
-            document.getElementById('container').innerHTML = template(categories);
+        .then(([categoryDescription, template]) => {
+            const data = {
+                categoryName: categoryName,
+                categoryDescription: categoryDescription,
+                posts: posts
+            }
+            document.getElementById('container').innerHTML = template(data);
         })
 }
 
-function showPostPage() {
+function showPostPage(params) {
+    const postId = params.post;
     Promise.all([
-        getPost(),
+        getPost(postId),
         loadTemplate('post')
         ])
-        .then(([categories, template]) => {
-            document.getElementById('container').innerHTML = template(categories);
+        .then(([post, template]) => {
+            console.log(template);
+            document.getElementById('container').innerHTML = template(post);
         })
 }

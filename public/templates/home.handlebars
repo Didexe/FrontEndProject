@@ -1,15 +1,15 @@
 <div id="slider">
     <div class="shadow-top"></div>
-    <div id="slider-controls-left"><i class="fa fa-angle-left fa-2x" aria-hidden="true"></i></div>
+    <div id="slider-controls-left" onclick="slideDirection(-1)" ><i class="fa fa-angle-left fa-2x" aria-hidden="true"></i></div>
     <div id="slider-images">
         {{#each slides}}
         {{#if @first}}
-        <div id="slider-text-field-{{@index}}" class="slider-text-field">
+        <div id="slider-text-field-{{@index}}" class="slider-text-field visible">
             <h2 class="heading">{{slideTitle}}</h2>
             <p class="exerpt">{{slideText}}</p>
             <a href="javascript:void(0)">Read more</a>                        
         </div>
-        <img id="slider-image-{{@index}}" class="slider-image" src="{{imageUrl}}" alt="slider image">
+        <img id="slider-image-{{@index}}" class="slider-image visible" src="{{imageUrl}}" alt="slider image">
         {{else}}
         <div id="slider-text-field-{{@index}}" class="slider-text-field hidden">
             <h2 class="heading">{{slideTitle}}</h2>
@@ -20,14 +20,14 @@
         {{/if}}
         {{/each}}
     </div>
-    <div id="slider-controls-right"><i class="fa fa-angle-right fa-2x" aria-hidden="true"></i></div>
+    <div id="slider-controls-right" onclick="slideDirection(1)" ><i class="fa fa-angle-right fa-2x" aria-hidden="true"></i></div>
     <div class="shadow-bottom"></div>
     <div id="slider-controls-bottom">
         {{#each slides}}
         {{#if @first}}
-        <div id="control-bottom-{{@index}}" class="control-bottom active"></div>
+        <div id="control-bottom-{{@index}}" class="control-bottom active" onclick="slideSliderImages({{@index}})"></div>
         {{else}}
-        <div id="control-bottom-{{@index}}" class="control-bottom"></div>
+        <div id="control-bottom-{{@index}}" class="control-bottom" onclick="slideSliderImages({{@index}})"></div>
         {{/if}}
         {{/each}}
     </div>
@@ -65,7 +65,7 @@
         <article id="multi-media">
             <h2 class="heading">Multi-media</h2>
             <div id="media-wrapper">
-                <div id="media-controls-left"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></div>
+                <div id="media-controls-left" onclick="mediaDecrease()"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></div>
                 {{#each multimedia}}
                 {{#isSmallerThan7 @index}}
                 <div class="media-item tooltip"><span class="tooltip-text">
@@ -79,7 +79,7 @@
                 </div>
                 {{/isSmallerThan7}}
                 {{/each}}
-                <div id="media-controls-right"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></div>
+                <div id="media-controls-right" onclick="mediaIncrease()"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></div>
             </div>
         </article>
     </section>

@@ -1,88 +1,61 @@
 <div id="breadcrumbs">
-                <p><span class="home">Home &raquo;</span><span class="category-name"> Some Category &raquo;</span><span class="post-title"> Post Title Goes Here</span></p>
+    <p><a href="#home">Home </a><span class="category-name">&raquo; {{categoryName}}</span></span></p>
+</div>
+<div class="divider"></div>
+<div id="quote">
+    <h1>{{categoryName}}</h1>
+    <p>{{categoryDescription}}</p>
+</div>
+<div class="divider"></div>
+<div id="content-wrapper">
+    <main id="post-wrapper">
+        {{#each posts}}
+        <a href="#categories/{{postCategory}}/{{postId}}"><h2 class="heading">{{postTitle}}</h2></a>
+        <div class="divider"></div>
+        <p class="post-details">Posted by<span> {{postAuthor}}</span> on <span>{{postDate}} </span>in <span>{{postCategory}}</span> category | <span>{{numberOfComments}} </span>comments</p>
+        <div class="divider"></div>
+        <section id="post">
+            <div class="post-image-wrapper">
+                <img class="post-image" src="{{imageUrl}}" alt=""/>
+                <div class="post-image-shadow"></div>
             </div>
-            <div class="divider"></div>
-            <div id="quote">
-                <h1>Post Title Goes Right Here</h1>
-                <p>Posted by Admin on March 13, 2010 in Some Category</p>
-            </div>
-            <div class="divider"></div>
-            <div id="content-wrapper">
-                <main id="post-wrapper">
-                    <div class="divider"></div>
-                    <p class="post-details">Posted by<span> Admin</span> on <span>March 13, 2011 </span>in <span>Some</span> category | <span>30 </span>comments</p>
-                    <div class="divider"></div>
-                    <section id="post">
-                        <div class="post-image-wrapper">
-                            <img class="post-image" src="http://fakeimg.pl/184x184?font=lobster" alt=""/>
-                            <div class="post-image-shadow"></div>
-                        </div>
-                        <p id="post-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
-                    </section>
-                    <section class="post-comments">
-                        <h2 class="heading"><span>30 </span> Comments</h2>
-                        <article class="comment">
-                            <div class="user-image-wrapper">
-                                <img class="user-image" src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
-                                <div class="user-image-shadow"></div>
-                            </div>
-                            <h2 class="heading username">Nick Roach</h2>
-                            <p class="post-date">March 13, 2010</p>
-                            <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
-                            <button type="button">Read more</button>
-                        </article>
-                        <article class="sub-comment">
-                            <div class="user-image-wrapper">
-                                <img class="user-image" src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
-                                <div class="user-image-shadow"></div>
-                            </div>
-                            <h2 class="heading username">Nick Roach</h2>
-                            <p class="comment-date">March 13, 2010</p>
-                            <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
-                            <button type="button" >Read more</button>
-                        </article>
-                    </section>
-                    <section id="reply-form">
-                        <h2 class="heading">Leave a Reply</h2>
-                        <input id="comment-name" type="text" placeholder="Name">
-                        <input id="comment-email" type="email" placeholder="Email">
-                        <textarea id="comment-text" name="message" cols="30" rows="10" placeholder="Message"></textarea>
-                        <button id="comment-button" type="button" onclick="addNewComment()">Post comment</button>
-                    </section>
-                </main>
-                <aside id="right-sidebar">
-                    <article class="links-widget">
-                        <h2 class="heading">From the blog</h2>
-                        <ul>
-                            <li><a href="#">Consequat id anim sunt</a></li>
-                            <li><a href="#">Aute proident dolore</a></li>
-                            <li><a href="#">Exercitation amet</a></li>
-                            <li><a href="#">Tempor magna nulla</a></li>
-                            <li><a href="#">Tempor sunt excepteur</a></li>
-                            <li><a href="#">Non aliquip nulla utr</a></li>
-                        </ul>
-                    </article>
-                    <article class="links-widget">
-                        <h2 class="heading">Archives</h2>
-                        <ul>
-                            <li><a href="#">Consequat id anim sunt</a></li>
-                            <li><a href="#">Aute proident dolore</a></li>
-                            <li><a href="#">Exercitation amet</a></li>
-                            <li><a href="#">Tempor magna nulla</a></li>
-                            <li><a href="#">Tempor sunt excepteur</a></li>
-                            <li><a href="#">Non aliquip nulla utr</a></li>
-                        </ul>
-                    </article>
-                    <article class="links-widget">
-                        <h2 class="heading">Recent Posts</h2>
-                        <ul>
-                            <li><a href="#">Consequat id anim sunt</a></li>
-                            <li><a href="#">Aute proident dolore</a></li>
-                            <li><a href="#">Exercitation amet</a></li>
-                            <li><a href="#">Tempor magna nulla</a></li>
-                            <li><a href="#">Tempor sunt excepteur</a></li>
-                            <li><a href="#">Non aliquip nulla utr</a></li>
-                        </ul>
-                    </article>
-                </aside>
-            </div>
+            <p id="post-text">{{postText}}</p>
+        </section>
+        {{/each}}
+    </main>
+    <aside id="right-sidebar">
+        <article class="links-widget">
+            <h2 class="heading">From the blog</h2>
+            <ul>
+                <li><a href="javascript:void(0)">Consequat id anim sunt</a></li>
+                <li><a href="javascript:void(0)">Aute proident dolore</a></li>
+                <li><a href="javascript:void(0)">Exercitation amet</a></li>
+                <li><a href="javascript:void(0)">Tempor magna nulla</a></li>
+                <li><a href="javascript:void(0)">Tempor sunt excepteur</a></li>
+                <li><a href="javascript:void(0)">Non aliquip nulla utr</a></li>
+            </ul>
+        </article>
+        <article class="links-widget">
+            <h2 class="heading">Archives</h2>
+            <ul>
+                <li><a href="javascript:void(0)">Consequat id anim sunt</a></li>
+                <li><a href="javascript:void(0)">Aute proident dolore</a></li>
+                <li><a href="javascript:void(0)">Exercitation amet</a></li>
+                <li><a href="javascript:void(0)">Tempor magna nulla</a></li>
+                <li><a href="javascript:void(0)">Tempor sunt excepteur</a></li>
+                <li><a href="javascript:void(0)">Non aliquip nulla utr</a></li>
+            </ul>
+        </article>
+        <article class="links-widget">
+            <h2 class="heading">Recent Posts</h2>
+            <ul>
+                <li><a href="javascript:void(0)">Consequat id anim sunt</a></li>
+                <li><a href="javascript:void(0)">Aute proident dolore</a></li>
+                <li><a href="javascript:void(0)">Exercitation amet</a></li>
+                <li><a href="javascript:void(0)">Tempor magna nulla</a></li>
+                <li><a href="javascript:void(0)">Tempor sunt excepteur</a></li>
+                <li><a href="javascript:void(0)">Non aliquip nulla utr</a></li>
+            </ul>
+        </article>
+    </aside>
+</div>
