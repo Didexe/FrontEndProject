@@ -1,0 +1,13 @@
+{{#each posts}}
+    <a href="#categories/{{postCategory}}/{{postId}}"><h2 class="heading">{{postTitle}}</h2></a>
+    <div class="divider"></div>
+    <p class="post-details">Posted by<span> {{postAuthor}}</span> on <span>{{postDate}} </span>in <span>{{postCategory}}</span> category | <span>{{numberOfComments}} </span>comments</p>
+    <div class="divider"></div>
+    <section id="{{postId}}"  class="post">
+        <div class="post-image-wrapper">
+            <img class="post-image" src="{{imageUrl}}" alt=""/>
+            <div class="post-image-shadow"></div>
+        </div>
+        <p id="post-text">{{postText}}</p>
+    </section>
+{{/each}}

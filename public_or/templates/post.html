@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div id="social">
+                    <div class="social-icon"><a href=""><img src="../assets/img/twitter_icon.svg" alt="twitter icon"></a></div>
+                    <div class="social-icon"><a href=""><img src="../assets/img/rss_icon.svg" alt="rss icon"></a></div>
+                    <div class="social-icon"><a href=""><img src="../assets/img/facebook_icon.svg" alt="facebook icon"></a></div>
+                </div>
+                <div id="search-wrapper">
+                    <input type="search" id="search" placeholder="Search this website ...">
+                    <img src="../assets/img/magnifying-glass.svg" alt="magnifying glass icon">
+                </div>
+                <div id="logo">
+                    <img src="../assets/img/logo.png" alt="logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Page Templates</a></li>
+                        <li><a href="#">Shortcodes</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </nav>
+                <div id="dropdown-menu">
+                    <div class="dropdown-btn">MENU</div>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Page Templates</a></li>
+                            <li><a href="#">Shortcodes</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <div id="breadcrumbs">
+                <p><span class="home">Home &raquo;</span><span class="category-name"> Some Category &raquo;</span><span class="post-title"> Post Title Goes Here</span></p>
+            </div>
+            <div class="divider"></div>
+            <div id="quote">
+                <h1>Post Title Goes Right Here</h1>
+                <p>Posted by Admin on March 13, 2010 in Some Category</p>
+            </div>
+            <div class="divider"></div>
+            <div id="content-wrapper">
+                <main id="post-wrapper">
+                    <div class="divider"></div>
+                    <p class="post-details">Posted by<span> Admin</span> on <span>March 13, 2011 </span>in <span>Some</span> category | <span>30 </span>comments</p>
+                    <div class="divider"></div>
+                    <section id="post">
+                        <div class="post-image-wrapper">
+                            <img class="post-image" src="http://fakeimg.pl/184x184?font=lobster" alt=""/>
+                            <div class="post-image-shadow"></div>
+                        </div>
+                        <p id="post-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
+                    </section>
+                    <section class="post-comments">
+                        <h2 class="heading"><span>30 </span> Comments</h2>
+                        <article class="comment">
+                            <div class="user-image-wrapper">
+                                <img class="user-image" src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
+                                <div class="user-image-shadow"></div>
+                            </div>
+                            <h2 class="heading username">Nick Roach</h2>
+                            <p class="post-date">March 13, 2010</p>
+                            <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
+                            <button type="button">Read more</button>
+                        </article>
+                        <article class="sub-comment">
+                            <div class="user-image-wrapper">
+                                <img class="user-image" src="http://fakeimg.pl/56x56?font=lobster" alt=""/>
+                                <div class="user-image-shadow"></div>
+                            </div>
+                            <h2 class="heading username">Nick Roach</h2>
+                            <p class="comment-date">March 13, 2010</p>
+                            <p class="comment-text">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
+                            <button type="button" >Read more</button>
+                        </article>
+                    </section>
+                    <section id="reply-form">
+                        <h2 class="heading">Leave a Reply</h2>
+                        <input id="comment-name" type="text" placeholder="Name">
+                        <input id="comment-email" type="email" placeholder="Email">
+                        <textarea id="comment-text" name="message" cols="30" rows="10" placeholder="Message"></textarea>
+                        <button id="comment-button" type="button" onclick="addNewComment()">Post comment</button>
+                    </section>
+                </main>
+                <aside id="right-sidebar">
+                    <article class="links-widget">
+                        <h2 class="heading">From the blog</h2>
+                        <ul>
+                            <li><a href="#">Consequat id anim sunt</a></li>
+                            <li><a href="#">Aute proident dolore</a></li>
+                            <li><a href="#">Exercitation amet</a></li>
+                            <li><a href="#">Tempor magna nulla</a></li>
+                            <li><a href="#">Tempor sunt excepteur</a></li>
+                            <li><a href="#">Non aliquip nulla utr</a></li>
+                        </ul>
+                    </article>
+                    <article class="links-widget">
+                        <h2 class="heading">Archives</h2>
+                        <ul>
+                            <li><a href="#">Consequat id anim sunt</a></li>
+                            <li><a href="#">Aute proident dolore</a></li>
+                            <li><a href="#">Exercitation amet</a></li>
+                            <li><a href="#">Tempor magna nulla</a></li>
+                            <li><a href="#">Tempor sunt excepteur</a></li>
+                            <li><a href="#">Non aliquip nulla utr</a></li>
+                        </ul>
+                    </article>
+                    <article class="links-widget">
+                        <h2 class="heading">Recent Posts</h2>
+                        <ul>
+                            <li><a href="#">Consequat id anim sunt</a></li>
+                            <li><a href="#">Aute proident dolore</a></li>
+                            <li><a href="#">Exercitation amet</a></li>
+                            <li><a href="#">Tempor magna nulla</a></li>
+                            <li><a href="#">Tempor sunt excepteur</a></li>
+                            <li><a href="#">Non aliquip nulla utr</a></li>
+                        </ul>
+                    </article>
+                </aside>
+            </div>
+            <footer>
+                <section class="text-widget">
+                    <h2 class="heading">About</h2>
+                    <p class="exerpt">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
+                </section>
+                <article class="links-widget">
+                    <h2 class="heading">Recent Posts</h2>
+                    <ul>
+                        <li><a href="#">Consequat id anim sunt</a></li>
+                        <li><a href="#">Aute proident dolore</a></li>
+                        <li><a href="#">Exercitation amet</a></li>
+                        <li><a href="#">Tempor magna nulla</a></li>
+                        <li><a href="#">Tempor sunt excepteur</a></li>
+                        <li><a href="#">Non aliquip nulla utr</a></li>
+                    </ul>
+                </article>
+                <section class="text-widget">
+                    <h2 class="heading">Text Widget</h2>
+                    <p class="exerpt">Voluptate non non laborum dolore esse incididunt esse enim. Irure ex ipsum excepteur eu mollit elit esse ea. Duis ad nulla aliqua ea duis commodo ut non voluptate cupidatat esse.</p>
+                </section>
+                <article class="links-widget">
+                    <h2 class="heading">Recent Comments</h2>
+                    <ul>
+                        <li><a href="#">Consequat id anim sunt</a></li>
+                        <li><a href="#">Aute proident dolore</a></li>
+                        <li><a href="#">Exercitation amet</a></li>
+                        <li><a href="#">Tempor magna nulla</a></li>
+                        <li><a href="#">Tempor sunt excepteur</a></li>
+                        <li><a href="#">Non aliquip nulla utr</a></li>
+                    </ul>
+                </article>
+            </footer>
+        </div>
+        <script src="../js/scripts.js"></script>
+    </body>
+</html>

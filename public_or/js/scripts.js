@@ -4,7 +4,6 @@
 const db = firebase.database();
 const storage = firebase.storage().ref();
 // const user = 
-const posts = []
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 Handlebars.registerHelper('isSmallerThan7', function(index, options) {
@@ -13,6 +12,8 @@ Handlebars.registerHelper('isSmallerThan7', function(index, options) {
     }
     return options.inverse(this);
  })
+
+//  image slider home page 
 function slideDirection(direction) {
     const numberOfImages = document.getElementsByClassName('slider-image').length;
     const currentIndex = document.getElementsByClassName('slider-image visible')[0].id.split('-')[2];
@@ -37,10 +38,43 @@ function slideSliderImages(index) {
     document.getElementsByClassName('control-bottom active')[0].classList.remove('active');
     document.getElementById('control-bottom-' + index).classList.add('active');
 }
-    
-function slideMultimediaImages() {
 
+//  image slider home page end
+    
+function slideMultimediaImages(direction) {
+    const numberOfVisible = 7;
+    const allImages = document.getElementsByClassName('media-item tooltip');
+    const len = allImages.length;
+    if(direction === 'left'){
+        for(let i = 0; i <= len; i += 1) {
+                if (allImages[i].className === 'media-item tooltip visible') {
+                    if (i+numberOfVisible < len) {
+                        allImages[i].className = 'media-item tooltip hidden';
+                        allImages[i+numberOfVisible].className = 'media-item tooltip visible'
+                        break;
+                    } else {
+                        // if (allImages[i].className === 'media-item tooltip visible') {
+                        //     allImages[i].className = 'media-item tooltip hidden';
+                        //     allImages[i+numberOfVisible-len].className = 'media-item tooltip visible'
+                            break;
+                        }
+                }
+            }
+    } else {
+        for(let i = len-1; i >= 0; i -= 1) {
+                if (allImages[i].className === 'media-item tooltip hidden') {
+                    continue;
+            } else {
+                if (i-numberOfVisible >= 0) {
+                    allImages[i].className = 'media-item tooltip hidden';
+                    allImages[i-numberOfVisible].className = 'media-item tooltip visible'
+                    break;
+            }
+        }
+    }
 }
+}
+
 
 function clearInputs() {
     document.querySelectorAll("input, textarea")
@@ -95,35 +129,77 @@ function getCategoryNames() {
     }) 
 }
 
-// function getCategoryPosts(categoryName) {
-//     return db.ref('categories/').child(categoryName).child('categoryPosts').once('value', (snapshot) => {
-//         snapshot.forEach((post) => {
-//            posts.push(post.val());
-//         })
-//     }).then(() => {
-//         return Promise.resolve(posts);
-//     }) 
-// }
-
-function getCategoryPosts(categoryName) {
-    return db.ref('categories/').child(categoryName).once('value')
+function getCategory(categoryName, postsPerPage) {
+    let categoryPosts;
+    let numberOfPages;
+    const pages = [];
+    db.ref('categories/').child(categoryName).child('categoryPosts').orderByKey().limitToFirst(postsPerPage)
+        .once('value')
         .then((snapshot) => {
-            const categoryDescription = (snapshot.val() && snapshot.val().categoryDescription);
-            const categoryPosts = snapshot.val() && snapshot.val().categoryPosts;
-            Object.keys(categoryPosts).forEach((id) => {
-                posts.push(categoryPosts[id]);
-                });
-            return Promise.resolve(categoryDescription)
+            categoryPosts = snapshot.val();
+        });
+    db.ref(`categories/${categoryName}`).child('numberOfPosts').once('value')
+    .then((snapshot) => {
+        numberOfPages = Math.ceil(snapshot.val() / postsPerPage);
+        for(let i = 1; i <= numberOfPages; i += 1) {
+            pages.push(i)
+        }
     })
+    
+    return db.ref(`categories/${categoryName}`).child('categoryDescription').once('value')
+        .then((snapshot) => {
+            const category = {};
+            category.categoryName = categoryName;
+            category.categoryDescription = snapshot.val();
+            category.categoryPosts = categoryPosts;
+            category.categoryPages = pages;
+            return Promise.resolve(category)
+    })
+}
+
+function getPosts(requestedPage, postsPerPage) {
+    const categoryName = document.getElementById('category-name').innerHTML;
+    let categoryPosts;
+    const currentPage = +document.getElementsByClassName('category-page-button active')[0].innerHTML;
+    console.log(requestedPage);
+    console.log(currentPage);
+    if(requestedPage > currentPage) {
+        const startId = document.getElementsByClassName('post')[postsPerPage-1].id;
+        return db.ref('categories/').child(categoryName).child('categoryPosts').orderByKey().startAt(startId).limitToFirst(postsPerPage + 1)
+            .once('value', (snapshot) => {
+                console.log(snapshot);
+                categoryPosts = snapshot.val();
+                delete categoryPosts[startId]
+            })
+            .then(() => {
+                document.getElementById('category-page-button-' + currentPage).classList.remove('active');
+                document.getElementById('category-page-button-' + currentPage).disabled = false;
+                document.getElementById('category-page-button-' + requestedPage).classList.add('active');
+                document.getElementById('category-page-button-' + requestedPage).disabled = true;
+                return Promise.resolve({posts: categoryPosts});
+            });
+    } else {
+        const endId = document.getElementsByClassName('post')[0].id;
+        return db.ref('categories/').child(categoryName).child('categoryPosts').orderByKey().endAt(endId).limitToLast(postsPerPage + 1)
+            .once('value', (snapshot) => {
+                console.log(snapshot);
+                categoryPosts = snapshot.val();
+                delete categoryPosts[endId]
+            })
+            .then(() => {
+                document.getElementById('category-page-button-' + currentPage).classList.remove('active');
+                document.getElementById('category-page-button-' + currentPage).disabled = false;
+                document.getElementById('category-page-button-' + requestedPage).classList.add('active');
+                document.getElementById('category-page-button-' + requestedPage).disabled = true;
+                return Promise.resolve({posts: categoryPosts});
+            });
+    }
 }
 
 function getPost(postId) {
     return db.ref('posts').child(postId).once('value')
         .then((snapshot) => {
             const post = snapshot.val()
-            // const comments = post.postComments;
-            // const postComments = [];
-            // Object.keys(comments).forEach((id) => )
             return Promise.resolve(post);
         })
 }
@@ -415,16 +491,23 @@ function showAdminPage() {
 function showCategoryPage(params) {
     const categoryName = params.category;
     Promise.all([
-        getCategoryPosts(categoryName),
+        getCategory(categoryName, 3),
         loadTemplate('category')
         ])
-        .then(([categoryDescription, template]) => {
-            const data = {
-                categoryName: categoryName,
-                categoryDescription: categoryDescription,
-                posts: posts
-            }
-            document.getElementById('container').innerHTML = template(data);
+        .then(([category, template]) => {
+            console.log(category);
+            document.getElementById('container').innerHTML = template(category);
+        })
+}
+
+function showCategoryPostsPage(requestedPage) {
+    Promise.all([
+        getPosts(requestedPage, 3),
+        loadTemplate('posts-page')
+        ])
+        .then(([posts, template]) => {
+            console.log(posts);
+            document.getElementById('posts-page').innerHTML = template(posts);
         })
 }
 
@@ -435,7 +518,6 @@ function showPostPage(params) {
         loadTemplate('post')
         ])
         .then(([post, template]) => {
-            console.log(template);
             document.getElementById('container').innerHTML = template(post);
         })
 }

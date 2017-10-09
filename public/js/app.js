@@ -1,28 +1,53 @@
+/* global firebase, Navigo */
+import homeController from '../controllers/home.controller';
+import adminController from '../controllers/admin.controller';
+import authenticationController from '../controllers/authentication.controller';
+import categoriesController from '../controllers/categories.controller';
+import postsController from '../controllers/posts.controller';
+import firebaseConfig from '../js/utils/settings';
+
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCXp1GKlfoTF4eY49tx2inZSOrE3peimNQ",
-    authDomain: "photo-blog-85739.firebaseapp.com",
-    databaseURL: "https://photo-blog-85739.firebaseio.com",
-    projectId: "photo-blog-85739",
-    storageBucket: "photo-blog-85739.appspot.com",
-    messagingSenderId: "735786168913"
-  };
-  firebase.initializeApp(config);
+
+  firebase.initializeApp(firebaseConfig);
 
   console.log('app running');
 
-  const router = new Navigo(null, true, '#!')
-  
+  // const router = new Navigo()
+
+  // router.updatePageLinks()
+
+  // router
+  //   .on({
+  //     '/admin': () => showAdminPage(),
+  //     '/login': () => showLoginPage(),
+  //     '/signup': () => showSignupPage(),
+  //     '/logout': () => logoutUser(),
+  //     '/home': () => {
+  //       showHomePage();
+  //       console.log('Loading Home page from App')
+  //     },
+  //     '/categories/:category': (params) => showCategoryPage(params),
+  //     '/categories/:category/:post': (params) => showPostPage(params),
+  //     // '/': () => router.navigate('/home')
+  //   })
+  //   .resolve();
+
+  const router = new Navigo(null, true, '#!');
+
+  router.updatePageLinks();
+
     router.on({
-      'admin': () => showAdminPage(),
-      'login': () => showLoginPage(),
-      'signup': () => showSignupPage(),
-      'logout': () => logoutUser(),
+      'admin': () => adminController.showAdminPage(),
+      // 'admin/addcategory': () => router.navigate('admin'),
+      'login': () => authenticationController.showLoginPage(),
+      'signup': () => authenticationController.showSignupPage(),
+      'logout': () => authenticationController.logoutUser(),
       'home': () => {
-        showHomePage();
-        console.log('Loading Home page from App')
+        homeController.showHomePage();
+        console.log('Loading Home page from App');
       },
-      'categories/:category': (params) => showCategoryPage(params),
-      'categories/:category/:post': (params) => showPostPage(params),
+      'categories/:category': (params) => categoriesController.showCategoryPage(params),
+      'categories/:category/:post': (params) => postsController.showPostPage(params),
+      // '': () => {router.navigate('#home')}
     })
     .resolve();
