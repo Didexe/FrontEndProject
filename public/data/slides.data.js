@@ -1,5 +1,5 @@
-import { db, storage } from './database';
-
+import db from './database';
+import storage from './storage';
 class SlidesController {
     addSlide(slideImage, slideTitle, slideText) {
         const uploadTask = storage.child(`slideimages/${slideImage.name}`).put(slideImage);

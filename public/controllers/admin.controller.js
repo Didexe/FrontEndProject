@@ -4,18 +4,19 @@ import categoriesData from '../data/categories.data';
 import slidesData from '../data/slides.data';
 import postsData from '../data/posts.data';
 import multimediaData from '../data/multimedia.data';
-import articlesData from '../data/article.data';
+import articlesData from '../data/articles.data';
 import template from '../js/templates';
 import clearInputs from '../js/utils/clearInputs';
-import MONTHS from '../js/utils/settings';
+import settings from '../js/utils/settings';
+import compiledTemplate from '../templates/precompiled/admin.template';
 
 class AdminController {
     showAdminPage() {
         Promise.all([
             categoriesData.getCategoryNames(),
-            template.compileTemplate('admin'),
+            // template.compileTemplate('admin'),
             ])
-            .then(([categories, compiledTemplate]) => {
+            .then(([categories]) => {
                 document.getElementById('container').innerHTML = compiledTemplate(categories);
             });
     }
@@ -78,7 +79,7 @@ class AdminController {
             postCategory: document.getElementById('input-post-category').value,
             userId: firebase.auth().currentUser.uid,
             postAuthor: firebase.auth().currentUser.displayName,
-            postDate: MONTHS[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear(),
+            postDate: settings.MONTHS[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear(),
             numberOfComments: 0,
         };
 

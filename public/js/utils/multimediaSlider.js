@@ -1,4 +1,4 @@
-export function slideMultimediaImages(direction) {
+function slideMultimediaImages(direction) {
     const numberOfVisible = 7;
     const allImages = document.getElementsByClassName('media-item tooltip');
     const len = allImages.length;

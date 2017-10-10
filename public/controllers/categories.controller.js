@@ -1,16 +1,18 @@
 import template from '../js/templates';
 import categoriesData from '../data/categories.data';
-import postsPerPage from '../js/utils/settings';
+import settings from '../js/utils/settings';
+import categoryTemplate from '../templates/precompiled/category.template';
+import categoryPageTemplate from '../templates/precompiled/category.template';
 class CategoriesController {
     showCategoryPage(params) {
         const categoryName = params.category;
         Promise.all([
-            categoriesData.getCategory(categoryName, postsPerPage),
-            template.compileTemplate('category'),
+            categoriesData.getCategory(categoryName, settings.postsPerPage),
+            // template.compileTemplate('category'),
             ])
-            .then(([category, compiledTemplate]) => {
+            .then(([category]) => {
                 console.log(category);
-                document.getElementById('container').innerHTML = compiledTemplate(category);
+                document.getElementById('container').innerHTML = categoryTemplate(category);
             });
     }
 
@@ -19,10 +21,10 @@ class CategoriesController {
         const categoryName = document.getElementById('category-name').innerHTML;
         Promise.all([
             categoriesData.getCategoryPostsPage(currentPage, requestedPage, postsPerPage, categoryName),
-            template.compileTemplate('posts-page'),
+            // template.compileTemplate('posts-page'),
             ])
-            .then(([posts, compiledTemplate]) => {
-                document.getElementById('posts-page').innerHTML = compiledTemplate(posts);
+            .then(([posts]) => {
+                document.getElementById('posts-page').innerHTML = categoryPageTemplate(posts);
                 document.getElementById('category-page-button-' + currentPage).classList.remove('active');
                 document.getElementById('category-page-button-' + currentPage).disabled = false;
                 document.getElementById('category-page-button-' + requestedPage).classList.add('active');

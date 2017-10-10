@@ -1,4 +1,5 @@
-import { db, storage } from './database';
+import db from './database';
+import storage from './storage';
 
 class PostsData {
     getPost(postId) {
@@ -32,8 +33,22 @@ class PostsData {
             });
     }
 
-    addPostComment() {
+    addComment(categoryName, postId, comment) {
+        let commentsNumber;
+        const newCommentKey = db.ref().child('comments').push().key;
+        const updates = {};
 
+        db.ref(`categories/${categoryName}/categoryPosts/${postId}`)
+            .once('value')
+            .then((snapshot) => {
+                console.log(snapshot.val());
+                commentsNumber = snapshot.val().numberOfComments + 1;
+                updates[`posts/${postId}/postComments/${newCommentKey}`] = comment;
+                updates[`comments/${newCommentKey}`] = comment;
+                updates[`posts/${postId}/numberOfComments`] = commentsNumber;
+                updates[`categories/${categoryName}/categoryPosts/${postId}/numberOfComments`] = commentsNumber;
+                db.ref().update(updates);
+            });
     }
 }
 

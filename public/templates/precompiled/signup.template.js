@@ -1,0 +1,4 @@
+import Handlebars from '../../lib/handlebars/runtime'; export default
+Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<section id=\"register-user\">\n    <h2>Register user</h2>\n    <input type=\"text\" name=\"username\" id=\"input-username\" placeholder=\"Username\" required>\n    <input type=\"email\" name=\"email\" id=\"input-email\" placeholder=\"Email\" required>\n    <input type=\"password\" name=\"password\" id=\"input-password\" placeholder=\"Password\" required>\n    <input type=\"file\" name=\"input_user_image\" id=\"input-user-image\" required>\n    <button id=\"user-button\" type=\"submit\" onclick=\"addNewUser()\">Register</button>\n</section>  ";
+},"useData":true})

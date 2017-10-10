@@ -1,4 +1,5 @@
-import { db, storage } from './database';
+import db from './database';
+import storage from './storage';
 class ArticlesData {
     getArticles() {
         const articles = [];

@@ -1,22 +1,12 @@
+import loginTemplate from '../templates/precompiled/login.template';
+import signupTemplate from '../templates/precompiled/signup.template';
 class AuthenticationController {
     showLoginPage() {
-        fetch('../templates/login.html')
-            .then((response) => {
-                response.text()
-                    .then((html) => {
-                        document.getElementById('container').innerHTML = html;
-                    });
-            });
+        document.getElementById('container').innerHTML = loginTemplate();
     }
 
     showSignupPage() {
-        fetch('../templates/signup.html')
-            .then((response) => {
-                response.text()
-                    .then((html) => {
-                        document.getElementById('container').innerHTML = html;
-                    });
-            });
+        document.getElementById('container').innerHTML = signupTemplate();
     }
 
     addNewUser() {
@@ -40,7 +30,7 @@ class AuthenticationController {
                         user.updateProfile({ displayName: username, photoURL: imageUrl });
                     });
                 }).then(() => {
-                    router.navigate('/');
+                    router.navigate('home');
                     alert('Registered and loged in');
                 });
         })
@@ -55,7 +45,7 @@ class AuthenticationController {
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
-                router.navigate('')
+                router.navigate('home')
                 alert('Logged in!')
             })
             .catch((error) => {
@@ -71,5 +61,6 @@ class AuthenticationController {
     }
 }
 
-export default AuthenticationController;
+const authenticationController = new AuthenticationController;
+export default authenticationController;
 
