@@ -10,15 +10,15 @@ import postsController from '../controllers/posts.controller';
 
 console.log('app running');
 
-  const router = new Navigo(null, true, '#!');
+  const router = new Navigo(null, true, '#');
 
   router.updatePageLinks();
 
     router.on({
       'admin': () => adminController.showAdminPage(),
-      'admin/addslide': () => adminController.addNewSlide(),
+      'admin/addnewslide': () => adminController.addNewSlide(),
       'admin/addnewpost': () => adminController.addNewPost(),
-      'admin/addnewgategory': () => adminController.addNewCategory(),
+      'admin/addnewcategory': () => adminController.addNewCategory(),
       'admin/addnewmultimedia': () => adminController.addNewMultimedia(),
       'admin/addnewarticle': () => adminController.addNewMultimedia(),
       'login': () => authenticationController.showLoginPage(),
@@ -26,7 +26,7 @@ console.log('app running');
       'logout': () => authenticationController.logoutUser(),
       'home': () => homeController.showHomePage(),
       'categories/:category': (params) => categoriesController.showCategoryPage(params),
-      'categories/:category/page/:page': (params) => categoriesController.updateCategoryPage(params),
+      // 'categories/:category/page/:page': (params) => categoriesController.updateCategoryPage(params),
       'categories/:category/:post': (params) => postsController.showPostPage(),
   
       '': () => router.navigate('home'),

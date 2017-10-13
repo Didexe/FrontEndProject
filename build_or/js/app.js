@@ -16,9 +16,9 @@ console.log('app running');
 
     router.on({
       'admin': () => adminController.showAdminPage(),
-      'admin/addnewslide': () => adminController.addNewSlide(),
+      'admin/addslide': () => adminController.addNewSlide(),
       'admin/addnewpost': () => adminController.addNewPost(),
-      'admin/addnewcategory': () => adminController.addNewCategory(),
+      'admin/addnewgategory': () => adminController.addNewCategory(),
       'admin/addnewmultimedia': () => adminController.addNewMultimedia(),
       'admin/addnewarticle': () => adminController.addNewMultimedia(),
       'login': () => authenticationController.showLoginPage(),
@@ -26,7 +26,7 @@ console.log('app running');
       'logout': () => authenticationController.logoutUser(),
       'home': () => homeController.showHomePage(),
       'categories/:category': (params) => categoriesController.showCategoryPage(params),
-      // 'categories/:category/page/:page': (params) => categoriesController.updateCategoryPage(params),
+      'categories/:category/page/:page': (params) => categoriesController.updateCategoryPage(params),
       'categories/:category/:post': (params) => postsController.showPostPage(),
   
       '': () => router.navigate('home'),

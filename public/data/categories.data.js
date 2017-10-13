@@ -7,7 +7,7 @@ class CategoriesData {
                 if (snapshot.exists()) {
                     alert('Category already exists!');
                 } else {
-                    db.ref(`categories/`).child(category.categoryName).set({ category });
+                    db.ref(`categories/`).child(category.categoryName).set(category);
                 }
             });
     }

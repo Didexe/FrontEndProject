@@ -47,15 +47,15 @@ gulp.task('mainjs', function() {
 gulp.task('copyfiles', function () {
     gulp.src('./public/lib/main.min.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./build/public/lib'));
+        .pipe(gulp.dest('./build/lib'));
     gulp.src('./public/css/style.css')
-        .pipe(gulp.dest('./build/public/css'));
+        .pipe(gulp.dest('./build/css'));
     gulp.src('./public/assets/img/*')
-        .pipe(gulp.dest('./build/public/img'));
+        .pipe(gulp.dest('./build/img'));
     gulp.src(['./public/lib/handlebars/dist/handlebars.runtime.min.js', './public/lib/navigo/lib/navigo.min.js', './public/lib/navigo/lib/navigo.min.js.map'])
-        .pipe(gulp.dest('./build/public/lib'));
+        .pipe(gulp.dest('./build/lib'));
     gulp.src(['./public/js/app.js', './public/js/helpers.js'])
-        .pipe(gulp.dest('./build/public/js'));
+        .pipe(gulp.dest('./build/js'));
     gulp.src(['./public/js/utils/settings.js', './public/js/utils/clearInputs.js'])
         .pipe(gulp.dest('./build/js/utils'));
 });

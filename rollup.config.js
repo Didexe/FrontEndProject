@@ -5,7 +5,7 @@ import commonjs from 'rollup-plugin-commonjs';
 
 export default {
   entry: 'public/js/app.js',
-  dest: 'build/js/main.min.js',
+  dest: 'public/lib/main.min.js',
   format: 'iife',
   sourceMap: 'inline',
   globals: {

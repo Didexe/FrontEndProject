@@ -25,7 +25,7 @@ class AdminController {
         const multimediaImage = document.getElementById('input-multimedia-image').files[0];
         const multimediaText = document.getElementById('input-multimedia-text').value;
 
-        multimediaData.addMultimedia(multimediaImage, multimediaText)
+        return multimediaData.addMultimedia(multimediaImage, multimediaText)
             .then(() => {
                 clearInputs();
                 alert('New multimedia added');
@@ -37,8 +37,8 @@ class AdminController {
         const articleTitle = document.getElementById('input-article-title').value;
         const articleText = document.getElementById('input-article-text').value;
 
-        articlesData.addArticle(articleImage, articleTitle, articleText)
-            .then(() => {
+        return articlesData.addArticle(articleImage, articleTitle, articleText)
+            .then((message) => {
                 clearInputs();
                 alert('New article added');
             });
@@ -49,9 +49,10 @@ class AdminController {
         const slideTitle = document.getElementById('input-slide-title').value;
         const slideText = document.getElementById('input-slide-text').value;
 
-        slidesData.addSlide(slideImage, slideTitle, slideText)
+        return slidesData.addSlide(slideImage, slideTitle, slideText)
             .then(() => {
                 clearInputs();
+                // this.showAdminPage();
                 alert('New slide added');
             });
     }
@@ -63,11 +64,11 @@ class AdminController {
             numberOfPosts: 0,
         };
 
-        categoriesData.addCategory(category)
-        .then(() => {
-                // router.navigate('admin/addcategory');
-                alert('New category added');
-            });
+        return categoriesData.addCategory(category)
+            .then(() => {
+                    this.showAdminPage();
+                    alert('New category added');
+                });
     }
 
     addNewPost() {
@@ -83,7 +84,7 @@ class AdminController {
             numberOfComments: 0,
         };
 
-        postsData.addPost(post)
+        return postsData.addPost(post)
             .then(() => {
                 clearInputs();
                 alert('New post added');

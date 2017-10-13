@@ -1,38 +1,48 @@
 <div id="breadcrumbs">
-    <p><a href="#home">Home </a><span class="category-name">&raquo; {{categoryName}}</span></span></p>
+<p><a href="#home">Home </a><span>&raquo; <a href="#categories/{{postCategory}}">{{postCategory}} </a></span><span>&raquo; {{postTitle}}</span></p>
 </div>
 <div class="divider"></div>
 <div id="quote">
-    <h1 id="category-name">{{categoryName}}</h1>
-    <p>{{categoryDescription}}</p>
+    <h1>{{postTitle}}</h1>
+    <p>Posted by {{postAuthor}} on {{postDate}} in {{postCategory}} Category</p>
 </div>
 <div class="divider"></div>
 <div id="content-wrapper">
     <main id="post-wrapper">
-        <div id="posts-section">
-            {{#each categoryPosts}}
-            <a href="#categories/{{postCategory}}/{{postId}}"><h2 class="heading">{{postTitle}}</h2></a>
-            <div class="divider"></div>
-            <p class="post-details">Posted by<span> {{postAuthor}}</span> on <span>{{postDate}} </span>in <span>{{postCategory}}</span> category | <span>{{numberOfComments}} </span>comments</p>
-            <div class="divider"></div>
-            <section id="{{postId}}" class="post">
-                <div class="post-image-wrapper">
-                    <img class="post-image" src="{{imageUrl}}" alt=""/>
-                    <div class="post-image-shadow"></div>
+        <div class="divider"></div>
+        <p class="post-details">Posted by<span> {{postAuthor}}</span> on <span>{{postDate}} </span>in <span>{{postCategory}}</span> category | <span>{{numberOfComments}} </span>comments</p>
+        <div class="divider"></div>
+        <section id="post">
+            <div class="post-image-wrapper">
+                <img class="post-image" src="{{imageUrl}}" alt=""/>
+                <div class="post-image-shadow"></div>
+            </div>
+            <p id="post-text">{{postText}}</p>
+        </section>
+        <section class="post-comments">
+            <h2 class="heading"><span>{{numberOfComments}} </span> Comments</h2>
+            {{#if postComments}}
+            {{#each postComments}}
+            <article class="comment">
+                <div class="user-image-wrapper">
+                    <img class="user-image" src="{{commentAuthorImage}}" alt=""/>
+                    <div class="user-image-shadow"></div>
                 </div>
-                <p class="post-text">{{postText}}</p>
-            </section>
+                <h2 class="heading username">{{commentAuthor}}</h2>
+                <p class="post-date">{{commentDate}}</p>
+                <p class="comment-text">{{commentText}}</p>
+                <button type="button">Read more</button>
+            </article>
             {{/each}}
-        </div>
-    <div id="pagination">
-        {{#each categoryPages}}
-        {{#if @first}}
-            <button id="category-page-button-{{this}}" class="category-page-button active" onclick="window.location.href = '#categories/{{postCategory}}/page/{{this}}'" disabled>{{this}}</button>
-        {{else}}
-            <button id="category-page-button-{{this}}" class="category-page-button" onclick="window.location.href = '#categories/{{postCategory}}/page/{{this}}'">{{this}}</button>
-        {{/if}}
-        {{/each}}
-    </div>
+            {{/if}}
+        </section>
+        <section id="reply-form">
+            <h2 class="heading">Leave a Reply</h2>
+            <input id="input-comment-user" type="text" placeholder="Name">
+            <input id="input-comment-email" type="email" placeholder="Email">
+            <textarea id="input-comment-text" name="message" cols="30" rows="10" placeholder="Message"></textarea>
+            <button id="comment-button" type="button" value="{{postCategory}}/{{postId}}" onclick="addNewComment(value)">Post comment</button>
+        </section>
     </main>
     <aside id="right-sidebar">
         <article class="links-widget">
